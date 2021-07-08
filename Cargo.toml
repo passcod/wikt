@@ -1,0 +1,18 @@
+[package]
+name = "wikt"
+version = "0.1.0"
+authors = ["Félix Saparelli <felix@passcod.name>"]
+edition = "2018"
+
+[dependencies]
+color-eyre = "0.5.11"
+deku = "0.12.2"
+log = "0.4.14"
+once_cell = "1.8.0"
+rayon = "1.5.1"
+regex = "1.5.4"
+stderrlog = "0.5.1"
+structopt = "0.3.21"
+tantivy = "0.15.3"
+xml-rs = "0.8.3"
+zstd = "0.9.0"
