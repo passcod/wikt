@@ -125,23 +125,19 @@ fn main() -> Result<()> {
 				let event = event?;
 
 				current = Page::parse(current, event);
-				match current {
-					Page::Texted {
-						ref title,
-						ref text,
-					} => {
-						let entry = blockstore::Entry::new(title, text);
-						block.add(entry)?;
+				if let Page::Texted {
+					ref title,
+					ref text,
+				} = current {
+					let entry = blockstore::Entry::new(title, text);
+					block.add(entry)?;
 
-						n += 1;
-						print!("\x1b[2K\x1b[0G{}", n);
-						if n % 10000 == 0 {
-							println!(": commit");
-							store.commit(&mut block, n)?;
-						}
+					n += 1;
+					print!("\x1b[2K\x1b[0G{}", n);
+					if n % 10000 == 0 {
+						println!(": commit");
+						store.commit(&mut block, n)?;
 					}
-
-					_ => {}
 				}
 			}
 
